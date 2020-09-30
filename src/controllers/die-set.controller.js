@@ -3,16 +3,15 @@ const DieSet = db.dieSets;
 
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (!req.body.name) {
       res.status(400).send({ message: "Content can not be empty!" });
       return;
     }
   
     // Create a DieSet
     const dieSet = new DieSet({
-      title: req.body.title,
-      description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      name: req.body.name,
+      
     });
   
     // Save DieSet in the database
@@ -30,8 +29,8 @@ exports.create = (req, res) => {
   };
 
   exports.findAll = (req, res) => {
-    const title = req.query.title;
-    var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+    const name = req.query.name;
+    var condition = name ? { name: { $regex: new RegExp(name), $options: "i" } } : {};
   
     DieSet.find(condition)
       .then(data => {
