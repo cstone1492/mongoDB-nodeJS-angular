@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { AddDieSetComponent } from './components/add-die-set/add-die-set.component';
 import { DetailsComponent } from './components/die-set/details/details.component';
 import { DieSetsListComponent } from './components/die-sets-list/die-sets-list.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { DieSetsListComponent } from './components/die-sets-list/die-sets-list.c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
