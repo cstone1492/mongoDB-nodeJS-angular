@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     // Create a DieSet
     const dieSet = new DieSet({
       name: req.body.name,
-      
+      dieTypes: req.body.dieTypes
     });
   
     // Save DieSet in the database

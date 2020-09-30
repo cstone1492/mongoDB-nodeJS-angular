@@ -1,8 +1,8 @@
 module.exports = mongoose => {
     var schema = mongoose.Schema(
         {
-          name: String
-        
+          name: String,
+          dieTypes: [Number],
         },
       );
 
