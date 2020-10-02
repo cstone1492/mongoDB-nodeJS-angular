@@ -11,17 +11,19 @@
           name="name"
         />
       </div>
-  
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input
-          class="form-control"
-          id="description"
-          required
-          [(ngModel)]="tutorial.description"
-          name="description"
-        />
-      </div>
+      <label>Die Types
+        <div class = "form-check" *ngFor="let dieType of dieTypes; let i = index">
+            <label class = "form-check-lable" for="dieType{{dieType}}">
+                <input class = "form-check-input"
+                id="dieType{{dieType}}" 
+                type="checkbox" name="dieType" 
+                [value] = "dieType.value" 
+                (change)="onCheckboxChange($event)"
+                >
+                {{dieType.name}}
+                </label>
+        </div>
+      </label>
   
       <button (click)="saveTutorial()" class="btn btn-success">Submit</button>
     </div>

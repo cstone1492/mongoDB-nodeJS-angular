@@ -22,7 +22,24 @@ export class AddDieSetComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  daveDieSet() {
+  onCheckboxChange(e) {
+    const dieTypesCheck: FormArray = this.dieSetForm.get('dieTypesCheck') as FormArray;
+
+    if (e.target.checked) {
+      dieTypesCheck.push(new FormControl(e.target.value));
+    } else {
+      let i: number = 0;
+      dieTypesCheck.controls.forEach((item: FormControl) => {
+        if (item.value == e.target.value) {
+          dieTypesCheck.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+  }
+
+  saveDieSet() {
     const data = {
       name: this.dieSet.name,
       dieTypes: this.dieSet.dieTypes
