@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DieSetService } from 'src/app/services/die-set.service';
 
 @Component({
   selector: 'app-add-die-set',
@@ -7,9 +8,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddDieSetComponent implements OnInit {
 
-  constructor() { }
+  dieSet = {
+    name: '',
+    dieTypes: []
+  }
+
+  submitted = false; 
+
+  dieTypes = [6, 20]
+
+  constructor(private dieSetService: DieSetService) { }
 
   ngOnInit(): void {
+  }
+
+  daveDieSet() {
+    const data = {
+      name: this.dieSet.name,
+      dieTypes: this.dieSet.dieTypes
+    };
+
+    this.dieSetService.create(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.submitted = true;
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  newDieSet() {
+    this.submitted = false;
+    this.dieSet = {
+      name: '',
+      dieTypes: []
+    };
   }
 
 }
